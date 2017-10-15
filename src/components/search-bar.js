@@ -13,8 +13,8 @@ export class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input onChange={this.onInputChange} />
-        {this.state.term}
+        <input value={this.state.term}
+        onChange={this.onInputChange} />
       </div>
     )
   }
