@@ -9,20 +9,28 @@ import { ApiKeys } from '../api-keys.constant.js';
 
 const API_KEY = ApiKeys.youtube;
 
-YTSearch({
-  key: API_KEY,
-  term: 'bacon',
-}, (data) => {
-  console.log(data);
-});
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-const App = () => {
-  return(
-    <div>
-      <SearchBar />
-      <VideoList videos={this.state.videos} />
-    </div>
-  );
+    this.state = {
+      videos: []
+    };
+
+    YTSearch({ key: API_KEY, term: 'bacon' }, (videos) => {
+      this.setState({ videos });
+    });
+  }
+
+  render() {
+    return(
+      <div>
+        <SearchBar />
+        <VideoList videos={this.state.videos} />
+      </div>
+    )
+  }
+
 }
 
 ReactDOM.render(<App />, document.querySelector('.container'));
